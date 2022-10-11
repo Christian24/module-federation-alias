@@ -1,17 +1,9 @@
-import React from "react";
+import {LitElement, html} from 'lit';
 
-const App = () => {
-  return (
-    <div style={{
-      margin: "10px",
-      padding:"10px",
-      textAlign:"center",
-      backgroundColor:"cyan"
-    }}>
-      <h1 >App 2</h1>
-    </div>
-  )
+
+class App extends LitElement {
+  render() {
+    return html`<h1>App2</h1>`
+  }
 }
-
-export default App;
-
+window.customElements.define('my-app2', App);

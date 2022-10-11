@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const path = require('path');
 const app2Config = require('../app2/webpack.config.js');
-const app3Config = require('../app3/webpack.config.js');
+
 
 module.exports = [
   {
@@ -19,12 +19,9 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.js?$/,
           loader: 'babel-loader',
           exclude: /node_modules/,
-          options: {
-            presets: ['@babel/preset-react'],
-          },
         },
       ],
     },
@@ -36,8 +33,7 @@ module.exports = [
           app3: 'app3@[app2Url]/app3/remoteEntry.js',
         },
         shared: {
-          react: { singleton: true },
-          'react-dom': { singleton: true },
+          lit: { singleton: true },
         },
       }),
       new ExternalTemplateRemotesPlugin(),
@@ -46,6 +42,5 @@ module.exports = [
       }),
     ],
   },
-  app2Config,
-  app3Config
+  app2Config
 ];

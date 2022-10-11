@@ -7,17 +7,15 @@ module.exports = {
   mode: 'development',
   output: {
     publicPath: '/app2/',
+    path: path.join(__dirname, 'app2')
   },
   context: __dirname,
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-react'],
-        },
       },
     ],
   },
@@ -29,7 +27,9 @@ module.exports = {
       exposes: {
         './App': './src/App',
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+      shared: {
+        lit: { singleton: true },
+      },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
